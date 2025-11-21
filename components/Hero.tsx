@@ -22,11 +22,13 @@ const Hero = () => {
                 </div>
 
                 <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-bold text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] drop-shadow-2xl animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
-                    Forged In <br />
+                    Your Journey to <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent relative inline-block">
-                        Combat
+                        Strength and Discipline
                         <span className="absolute -inset-1 bg-primary/20 blur-xl -z-10 rounded-full opacity-50"></span>
                     </span>
+                    <br />
+                    Starts Here
                 </h1>
 
                 <p className="text-base sm:text-lg md:text-2xl text-text-secondary max-w-2xl mx-auto mb-8 md:mb-12 font-light leading-relaxed animate-fade-in-up opacity-0 px-4" style={{ animationDelay: '0.5s' }}>
