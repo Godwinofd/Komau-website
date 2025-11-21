@@ -67,6 +67,36 @@ const Navbar = () => {
                         ))}
                         <Link
                             href="#contact"
+                            className="bg-white text-dark-950 hover:bg-gray-200 px-6 py-2 rounded-full font-bold uppercase text-sm transition-colors tracking-wide transform hover:scale-105 active:scale-95"
+                        >
+                            Book Trial
+                        </Link>
+                    </div>
+
+                    {/* Mobile Menu Button Placeholder for spacing */}
+                    <div className="md:hidden w-12 h-12"></div>
+                </div>
+            </nav>
+
+            {/* Mobile Menu Button - Fixed position above overlay */}
+            <button
+                className="md:hidden fixed top-6 right-6 text-white focus:outline-none z-[70] p-2 transition-all duration-300"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
+            >
+                {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+
+            {/* Mobile Menu Full Screen Overlay */}
+            <div
+                className={`md:hidden fixed inset-0 bg-dark-950 z-[60] transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
+                    }`}
+            >
+                <div className="flex flex-col items-center justify-center h-full w-full px-6 space-y-10">
+                    {navLinks.map((link, idx) => (
+                        <Link
+                            key={link.name}
+                            href={link.href}
                             className={`text-4xl font-heading font-bold uppercase tracking-widest text-white hover:text-primary transition-all transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                                 }`}
                             style={{ transitionDelay: isOpen ? `${idx * 100}ms` : '0ms' }}
@@ -75,19 +105,19 @@ const Navbar = () => {
                             {link.name}
                         </Link>
                     ))}
-                        <Link
-                            href="#contact"
-                            className={`btn-primary w-full max-w-sm text-center px-10 py-5 rounded-full text-xl shadow-2xl transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                                }`}
-                            style={{ transitionDelay: isOpen ? `${navLinks.length * 100}ms` : '0ms' }}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Book Free Trial
-                        </Link>
-                    </div>
+                    <Link
+                        href="#contact"
+                        className={`btn-primary w-full max-w-sm text-center px-10 py-5 rounded-full text-xl shadow-2xl transform ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+                            }`}
+                        style={{ transitionDelay: isOpen ? `${navLinks.length * 100}ms` : '0ms' }}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Book Free Trial
+                    </Link>
                 </div>
-            </>
-            );
+            </div>
+        </>
+    );
 };
 
-            export default Navbar;
+export default Navbar;
