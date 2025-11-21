@@ -34,7 +34,7 @@ const Gallery = () => {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {images.map((src, index) => (
                         <div key={index} className="aspect-square relative group overflow-hidden rounded-xl bg-dark-700 border border-white/5 shadow-lg">
                             <div

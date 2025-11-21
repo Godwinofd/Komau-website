@@ -57,7 +57,7 @@ const Contact = () => {
                                     <input
                                         type="text"
                                         id="name"
-                                        className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                                        className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-base text-white focus:outline-none focus:border-primary transition-colors"
                                         placeholder="John Doe"
                                     />
                                 </div>
@@ -66,7 +66,7 @@ const Contact = () => {
                                     <input
                                         type="tel"
                                         id="phone"
-                                        className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"
+                                        className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-base text-white focus:outline-none focus:border-primary transition-colors"
                                         placeholder="+44 ..."
                                     />
                                 </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                                 <label htmlFor="interest" className="block text-sm font-bold text-gray-400 mb-2 uppercase">Interested In</label>
                                 <select
                                     id="interest"
-                                    className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors appearance-none"
+                                    className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-base text-white focus:outline-none focus:border-primary transition-colors appearance-none"
                                 >
                                     <option>Muay Thai</option>
                                     <option>Brazilian Jiu-Jitsu</option>
@@ -99,7 +99,7 @@ const Contact = () => {
                                 <textarea
                                     id="message"
                                     rows={4}
-                                    className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors resize-none"
+                                    className="w-full bg-dark-900 border border-dark-600 rounded-md px-4 py-3 text-base text-white focus:outline-none focus:border-primary transition-colors resize-none"
                                     placeholder="Tell us about your experience level..."
                                 ></textarea>
                             </div>

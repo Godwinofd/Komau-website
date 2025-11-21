@@ -21,6 +21,16 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Prevent scrolling when mobile menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [isOpen]);
+
     const navLinks = [
         { name: "About", href: "#about" },
         { name: "Classes", href: "#classes" },
@@ -31,14 +41,14 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-all duration-500 ${isScrolled
+            className={`fixed w-full z-50 transition-all duration-500 ${isScrolled || isOpen
                 ? "glass-panel py-4"
                 : "bg-transparent py-6"
                 }`}
         >
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
-                <Link href="/" className="text-3xl font-heading font-bold text-white tracking-wider italic relative z-50">
+                <Link href="/" className="text-2xl md:text-3xl font-heading font-bold text-white tracking-wider italic relative z-50">
                     KO<span className="text-primary">MAU</span>
                 </Link>
 
@@ -64,16 +74,17 @@ const Navbar = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden text-white focus:outline-none relative z-50"
+                    className="md:hidden text-white focus:outline-none relative z-50 p-2"
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`md:hidden fixed inset-0 bg-dark-950/95 backdrop-blur-xl z-40 transition-all duration-500 flex items-center justify-center ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
-                <div className="flex flex-col items-center space-y-8">
+            <div className={`md:hidden fixed inset-0 bg-dark-950/98 backdrop-blur-xl z-40 transition-all duration-500 flex items-center justify-center ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+                <div className="flex flex-col items-center space-y-8 w-full px-6">
                     {navLinks.map((link, idx) => (
                         <Link
                             key={link.name}
@@ -87,7 +98,7 @@ const Navbar = () => {
                     ))}
                     <Link
                         href="#contact"
-                        className={`btn-primary px-8 py-4 rounded-full text-lg shadow-xl ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+                        className={`btn-primary w-full max-w-xs text-center px-8 py-4 rounded-full text-lg shadow-xl ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
                         style={{ transitionDelay: `${navLinks.length * 100}ms` }}
                         onClick={() => setIsOpen(false)}
                     >
