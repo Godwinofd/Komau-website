@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`md:hidden fixed inset-0 bg-dark-950/98 backdrop-blur-xl z-40 transition-all duration-500 flex items-center justify-center ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+            <div className={`md:hidden fixed inset-0 bg-dark-950/98 backdrop-blur-xl z-[60] transition-all duration-500 flex items-center justify-center ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <div className="flex flex-col items-center space-y-8 w-full px-6">
                     {navLinks.map((link, idx) => (
                         <Link

@@ -9,6 +9,7 @@ const Classes = () => {
             features: ["Pad Work & Bag Work", "Clinch Techniques", "Sparring (Advanced)", "Cardio & Conditioning"],
             image: "/images/muay-thai.png",
             color: "from-primary to-red-900",
+            day: "Monday"
         },
         {
             title: "Brazilian Jiu-Jitsu",
@@ -16,6 +17,7 @@ const Classes = () => {
             features: ["Gi & No-Gi Classes", "Positional Drilling", "Live Rolling", "Submission Defense"],
             image: "/images/bjj.png",
             color: "from-accent to-orange-900",
+            day: "Tuesday"
         },
         {
             title: "Fundamentals",
@@ -23,6 +25,7 @@ const Classes = () => {
             features: ["No Experience Needed", "Focus on Form", "Safety First", "Build Confidence"],
             image: "/images/fundamentals.png",
             color: "from-gray-700 to-gray-900",
+            day: "Monday"
         },
     ];
 
@@ -69,7 +72,7 @@ const Classes = () => {
                                 </ul>
 
                                 <Link
-                                    href="#timetable"
+                                    href={`?day=${cls.day}#timetable`}
                                     className="inline-flex items-center text-white font-bold uppercase tracking-wide hover:text-primary transition-colors group-hover:translate-x-2 duration-300 text-sm"
                                 >
                                     View Schedule <ArrowRight className="ml-2 w-4 h-4" />

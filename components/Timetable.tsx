@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Clock, MapPin } from "lucide-react";
 
-const Timetable = () => {
+const TimetableContent = () => {
     const [activeDay, setActiveDay] = useState("Monday");
+    const searchParams = useSearchParams();
 
     const schedule = [
         { day: "Monday", classes: [{ time: "18:30", name: "Muay Thai Fundamentals", type: "mt", duration: "60 min" }] },
@@ -16,6 +18,18 @@ const Timetable = () => {
         { day: "Saturday", classes: [{ time: "10:00", name: "Muay Thai Sparring", type: "mt", duration: "90 min" }, { time: "11:30", name: "BJJ Open Mat", type: "bjj", duration: "90 min" }] },
         { day: "Sunday", classes: [] },
     ];
+
+    useEffect(() => {
+        const dayParam = searchParams.get("day");
+        if (dayParam) {
+            // Capitalize first letter to match schedule keys
+            const formattedDay = dayParam.charAt(0).toUpperCase() + dayParam.slice(1).toLowerCase();
+            const dayExists = schedule.find(s => s.day === formattedDay);
+            if (dayExists) {
+                setActiveDay(formattedDay);
+            }
+        }
+    }, [searchParams]);
 
     const activeSchedule = schedule.find(s => s.day === activeDay);
 
@@ -32,15 +46,15 @@ const Timetable = () => {
                     </h3>
                 </div>
 
-                {/* Desktop Tabs */}
-                <div className="hidden md:flex justify-center mb-12 space-x-2 bg-dark-900/50 p-2 rounded-full backdrop-blur-sm border border-white/5 inline-flex mx-auto w-full max-w-4xl">
+                {/* Desktop Tabs - Removed inline-flex to fix mobile conflict */}
+                <div className="hidden md:flex justify-center mb-12 space-x-2 bg-dark-900/50 p-2 rounded-full backdrop-blur-sm border border-white/5 mx-auto w-full max-w-4xl">
                     {schedule.map((item) => (
                         <button
                             key={item.day}
                             onClick={() => setActiveDay(item.day)}
                             className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wide transition-all duration-300 ${activeDay === item.day
-                                    ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20"
-                                    : "text-text-secondary hover:text-white hover:bg-white/5"
+                                ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20"
+                                : "text-text-secondary hover:text-white hover:bg-white/5"
                                 }`}
                         >
                             {item.day.slice(0, 3)}
@@ -55,8 +69,8 @@ const Timetable = () => {
                             key={item.day}
                             onClick={() => setActiveDay(item.day)}
                             className={`flex-shrink-0 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide transition-all ${activeDay === item.day
-                                    ? "bg-primary text-white"
-                                    : "bg-dark-800 text-text-secondary border border-dark-700"
+                                ? "bg-primary text-white"
+                                : "bg-dark-800 text-text-secondary border border-dark-700"
                                 }`}
                         >
                             {item.day}
@@ -105,6 +119,14 @@ const Timetable = () => {
                 </div>
             </div>
         </section>
+    );
+};
+
+const Timetable = () => {
+    return (
+        <Suspense fallback={<div className="py-24 bg-dark-950 text-center text-white">Loading schedule...</div>}>
+            <TimetableContent />
+        </Suspense>
     );
 };
 
