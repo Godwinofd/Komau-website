@@ -52,6 +52,12 @@ const Hero = () => {
 
             {/* Scroll Indicator */}
             
+            <div className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-pulse-slow">
+                <div className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                    <span className="text-[10px] md:text-xs uppercase tracking-widest text-text-secondary"></span>
+                    <ChevronDown className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                </div>
+            
             </div>
         </section>
     );
